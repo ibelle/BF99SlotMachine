@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var secondContainer: UIView!
     var thirdContainer: UIView!
     var fourthContainer: UIView!
+    var titleLabel:UILabel!
     
     let kMarginForView:CGFloat=10.0 //Margin for left and right of view
     let kSixth:CGFloat = 1.0/6.0 //scalar for view height e.g. 1/6th hieght of container view
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setUpContainerViews()
+        setUpFirstContainer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +53,15 @@ class ViewController: UIViewController {
         self.fourthContainer.backgroundColor = UIColor.blueColor()
         self.view.addSubview(self.fourthContainer)
     }
-
+    func setUpFirstContainer(){
+        self.titleLabel = UILabel()
+        self.titleLabel.text = "Hit Dem Slots!!"
+        self.titleLabel.textColor = UIColor(red: 248.0/255.0, green: 218.0/255.0, blue: 49.0/255.0 , alpha: 1.0)
+        self.titleLabel.font = UIFont(name: "MarkerFelt-Wide", size: 40)
+        self.titleLabel.sizeToFit()
+        self.titleLabel.center = self.firstContainer.center
+        self.firstContainer.addSubview(titleLabel)
+    }
 
 }
 
