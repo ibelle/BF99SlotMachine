@@ -19,12 +19,16 @@ class ViewController: UIViewController {
     let kMyRed:UIColor = UIColor(red: 166.0/255.0, green: 51.0/255.0, blue: 46.0/255.0 , alpha: 1.0)
     
     let kMarginForView:CGFloat=10.0 //Margin for left and right of view
-    let kSixth:CGFloat = 1.0/6.0 //scalar for view height e.g. 1/6th hieght of container view
-    
+    let kMarginForSlot:CGFloat = 2.0
+
     let kNumberOfContainers = 3
     let kNumberOfSlots = 3
+    
+    //Scalars for view height e.g. 1/6th hieght of container view etc.
     let kThird: CGFloat = 1.0/3.0
-    let kMarginForSlot:CGFloat = 2.0
+    let kSixth:CGFloat = 1.0/6.0
+    let kHalf:CGFloat = 1.0/2.0
+    let kEighth:CGFloat = 1.0/8.0
     
     //Information Labels
     var creditsLabel:UILabel!
@@ -35,6 +39,12 @@ class ViewController: UIViewController {
     var creditsTitleLabel:UILabel!
     var betTitleLabel:UILabel!
     var winnerPaidTitleLabel:UILabel!
+    
+    //Buttons
+    var restButton: UIButton!
+    var bet1Butto:UIButton!
+    var betMaxButton:UIButton!
+    var spingButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -50,6 +60,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //IBActions
+    func resetButtonPressed(button: UIButton){
+        println("RESET PRESSED")
+        
     }
     
     func setUpContainerViews(){
@@ -156,8 +172,18 @@ class ViewController: UIViewController {
     }
     
     func setUpForthContainer(){
+        self.restButton = UIButton()
+        self.restButton.setTitle("Reset", forState: UIControlState.Normal)
+        self.restButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.restButton.titleLabel?.font = UIFont(name: "Futura-CondensedExtraBold", size: 12)
+        self.restButton.backgroundColor = UIColor.lightGrayColor()
+        self.restButton.sizeToFit()
+        self.restButton.center = CGPoint(x: self.fourthContainer.frame.width * kEighth, y: self.fourthContainer.frame.height * kHalf)
+        self.restButton.addTarget(self, action: "resetButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.fourthContainer.addSubview(restButton)
         
     }
+   
 
 }
 
