@@ -15,15 +15,21 @@ class ViewController: UIViewController {
     var fourthContainer: UIView!
     var titleLabel:UILabel!
     
+    let kMyYellow:UIColor = UIColor(red: 248.0/255.0, green: 218.0/255.0, blue: 49.0/255.0 , alpha: 1.0)
     let kMarginForView:CGFloat=10.0 //Margin for left and right of view
     let kSixth:CGFloat = 1.0/6.0 //scalar for view height e.g. 1/6th hieght of container view
     
+    let kNumberOfContainers = 3
+    let kNumberOfSlots = 3
+    let kThird: CGFloat = 1.0/3.0
+    let kMarginForSlot:CGFloat = 2.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setUpContainerViews()
         setUpFirstContainer()
+        setUpSecondContainer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,11 +62,22 @@ class ViewController: UIViewController {
     func setUpFirstContainer(){
         self.titleLabel = UILabel()
         self.titleLabel.text = "Hit Dem Slots!!"
-        self.titleLabel.textColor = UIColor(red: 248.0/255.0, green: 218.0/255.0, blue: 49.0/255.0 , alpha: 1.0)
+        self.titleLabel.textColor = kMyYellow
         self.titleLabel.font = UIFont(name: "MarkerFelt-Wide", size: 40)
         self.titleLabel.sizeToFit()
         self.titleLabel.center = self.firstContainer.center
         self.firstContainer.addSubview(titleLabel)
+    }
+    func setUpSecondContainer(){
+        for var containerNumber = 0 ; containerNumber < kNumberOfContainers; containerNumber++ {
+            for var slotNumber = 0 ; slotNumber < kNumberOfSlots; slotNumber++ {
+                var slotImageView = UIImageView()
+                slotImageView.backgroundColor = kMyYellow //UIColor.yellowColor()
+                //Use slot/container number and containerview bounds to layout these imageviews
+             slotImageView.frame = CGRect(x: secondContainer.bounds.origin.x + (secondContainer.bounds.size.width * CGFloat(containerNumber) * kThird), y: secondContainer.bounds.origin.y + (secondContainer.bounds.size.height * CGFloat(slotNumber) * kThird), width: secondContainer.bounds.width * kThird - kMarginForSlot, height: secondContainer.bounds.height * kThird - kMarginForSlot)
+                self.secondContainer.addSubview(slotImageView)
+                }
+            }
     }
 
 }
